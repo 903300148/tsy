@@ -1,0 +1,5 @@
+{
+  "/api/tabData": "/tabData",
+  "/api/cate/:id": "/cate/:id",
+  "/api/search": "/search"
+}

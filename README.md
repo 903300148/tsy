@@ -33,6 +33,16 @@ less 预处理器
 less
 less-loader
 
+跨域
+ http-proxy-middleware
+
+模块文件大小分析
+ webpack-bundle-analyzer
+
+json-server mockjs
+模拟数据
+
+
 - 修改 package.json
 
   ```json
@@ -59,3 +69,5 @@ less-loader
     })
   )
   ```
+
+json-server  -c json-server.json index.js
