@@ -15,7 +15,7 @@ export class Main extends Component {
         <Route exact={true} path="/games/buy" component={Buy}></Route>
         <Route
           exact={true}
-          path="/games/buy/list/:msg"
+          path="/games/buy/:msg"
           render={r => {
             return (
               <GoodsList

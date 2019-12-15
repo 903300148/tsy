@@ -1,0 +1,131 @@
+#goodsList {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  #thelist {
+    flex: 1;
+    min-height: 5.81rem;
+    #more {
+      overflow-y:scroll;
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      .more-list {
+        margin-top: 5px;
+        background-color: #fff;
+        padding: 11px 15px;
+        height: 158px;
+        > a {
+          display: block;
+          height: 136px;
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          .list-img {
+            margin-right: 15px;
+            width: 136px;
+            height: 136px;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .list-info {
+            flex: 1;
+            display: flex;
+            flex-flow: column nowrap;
+            .goodsName {
+              font-family: PingFangSC-Medium;
+              font-size: 14px;
+              color: #333;
+              letter-spacing: 1px;
+              font-weight: 600;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+            }
+            .clienBox {
+              line-height: 20px;
+              margin-top: 5px;
+              display: flex;
+              flex-flow: row nowrap;
+              justify-content: space-between;
+              align-items: center;
+              .goodsclien {
+                font-family: PingFangSC-Regular;
+                color: #999;
+                font-size: 12px;
+                line-height: 12px;
+                min-height: 12px;
+                overflow-x: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                span {
+                  margin-right: 5px;
+                }
+              }
+              .sellmode {
+                font-family: PingFangSC-Regular;
+                position: absolute;
+
+                right: 0;
+                span {
+                  margin-left: 2px;
+                }
+                .jishoubox {
+                  padding: 1px 5px;
+                  border: 1px solid #ff5858;
+                  color: #ff5858;
+                  border-radius: 8px;
+                }
+                .toubao {
+                  padding: 1px 5px;
+                  border: 1px solid #269e00;
+                  color: #269e00;
+                  border-radius: 8px;
+                }
+              }
+            }
+            .goodsbrightened {
+              font-family: PingFangSC-Regular;
+              font-size: 12px;
+              color: #ff5858;
+              letter-spacing: 2px;
+              margin-top: 15px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              -webkit-line-clamp: 2;
+              -webkit-box-orient: vertical;
+            }
+            .linebox {
+              position: absolute;
+              bottom: 0;
+              left: 151px;
+              right: 0;
+              display: flex;
+              flex-flow: row nowrap;
+              justify-content: space-between;
+              align-items: center;
+              .islineBox {
+                font-family: PingFangSC-Regular;
+                font-size: 12px;
+                color: #666;
+                letter-spacing: 0.03px;
+              }
+              .goodsprice {
+                font-family: PingFangSC-Medium;
+                font-size: 18px;
+                color: #ff0040;
+                letter-spacing: 0.08px;
+                text-align: right;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

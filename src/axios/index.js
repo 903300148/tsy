@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import qs from 'qs'
 export default {
   navBar: url => {
     return new Promise((resolve, reject) => {
@@ -39,7 +39,10 @@ export default {
   getGoods: option => {
     return new Promise((resolve, reject) => {
       axios({
-        url: option.url
+        url: option.url,
+        method: 'POST',
+        data: qs.stringify(option.data),
+        headers: { 'content-type': 'application/x-www-form-urlencoded' }
       }).then(res => {
         resolve(res.data)
       })

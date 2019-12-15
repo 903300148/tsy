@@ -91,18 +91,16 @@ export class Buy extends Component {
     // })
   }
   handelRoute = data => {
-    console.log(data.gameid)
-
     let info = {
       title: data.title,
       parentgoodsid: 20,
       goodsid: 1,
-      gameid: data.gameid
+      gameid: data.gameid,
+      spelling: data.spelling
     }
     store.set('goods', info)
-    // koudaiyaoguaifuke-442-20-1
     this.props.history.push({
-      pathname: '/games/buy/list/shenwu-2256-20-1',
+      pathname: `/games/buy/${info.spelling}-${info.gameid}-${info.parentgoodsid}-${info.goodsid}`,
       params: info
     })
   }
@@ -186,7 +184,11 @@ export class Buy extends Component {
                     <div
                       className="gamelist_imgs clearfix"
                       onClick={() =>
-                        this.handelRoute({ title: item.name, gameid: item.id })
+                        this.handelRoute({
+                          title: item.name,
+                          gameid: item.id,
+                          spelling: item.spelling
+                        })
                       }
                     >
                       <img src={item.pic} border="0" alt="" />
