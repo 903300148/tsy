@@ -2,11 +2,92 @@
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+
+  .goods-filter {
+    // height: calc(100% - 45px);
+    // position: fixed;
+    height: 45px;
+    // z-index: 999;
+    width: 100%;
+    // top: 45px;
+    position: relative;
+    // background: rgba(0, 0, 0, 0.5);
+    .goods-filter-condition {
+      height: 40px;
+      width: 100%;
+      position: absolute;
+      z-index: 999;
+      background: #fff;
+      top: 0px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-content: center;
+      align-items: center;
+      > div {
+        width: 25%;
+        text-align: center;
+        line-height: 40px;
+        color: #333;
+        span {
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 14px;
+        }
+        i {
+          font-size: 12px;
+        }
+        &.active {
+          color: #ff0040;
+        }
+      }
+    }
+    .goods-hidden {
+      display: none;
+
+      transform: translate();
+    }
+    .goods-show {
+      display: block;
+    }
+    .goods-filter-result {
+      // flex: 1;
+      z-index: 999;
+      width: 100%;
+      top: 40px;
+      position: absolute;
+      // min-height: 161px;
+      background: #fff;
+      .p-goodslist-filter-type-p {
+        height: 32px;
+        line-height: 32px;
+        margin: 0;
+        padding-left: 18px;
+        color: #666;
+        font-size: 14px;
+        position: relative;
+        &.active {
+          color: #f74b3d;
+        }
+      }
+      .p-goodslist-filter-type-p.active::after {
+        content: '';
+        position: absolute;
+        top: 11px;
+        right: 18px;
+        width: 15px;
+        height: 10px;
+        background: url(https://m.taoshouyou.com/static/home/static/img/goodslist/duigou_260748d.svg)
+          no-repeat;
+      }
+    }
+  }
   #thelist {
     flex: 1;
     min-height: 5.81rem;
     #more {
-      overflow-y:scroll;
+      overflow-y: scroll;
       height: 100%;
       display: flex;
       flex-flow: column nowrap;

@@ -43,6 +43,9 @@ json-server mockjs
 模拟数据
 
 
+react-app-polyfill
+兼容ie
+
 - 修改 package.json
 
   ```json
