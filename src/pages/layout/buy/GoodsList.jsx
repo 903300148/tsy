@@ -6,6 +6,7 @@ import axios from '../../../axios/index'
 import './goodList.less'
 import _ from 'lodash'
 import { logicalExpression } from '@babel/types'
+import { async } from 'q'
 
 class GoodsList extends Component {
   state = {
@@ -178,62 +179,62 @@ class GoodsList extends Component {
   }
   componentWillMount() {}
   async componentDidMount() {
-    // let { gameid, parentgoodsid, goodsid } = store.get('goods')
-    // let res = await axios.getGoods({
-    //   url: '/d',
-    //   data: {
-    //     gameid,
-    //     parentgoodsid,
-    //     goodsid
-    //   }
-    // })
-    // this.setState({
-    //   goodList: res.goodsList.filter(item => {
-    //     item.picurl = item.picurl
-    //       ? item.picurl[0]
-    //       : 'https://m.taoshouyou.com/static/home/static/img/goodslist/noimg_bb2fc02.png'
-    //     return item.id !== '7'
-    //   })
-    // })
+    let { gameid, parentgoodsid, goodsid } = store.get('goods')
+    let res = await axios.getGoods({
+      url: '/d',
+      data: {
+        gameid,
+        parentgoodsid,
+        goodsid
+      }
+    })
+    this.setState({
+      goodList: res.goodsList.filter(item => {
+        item.picurl = item.picurl
+          ? item.picurl[0]
+          : 'https://m.taoshouyou.com/static/home/static/img/goodslist/noimg_bb2fc02.png'
+        return item.id !== '7'
+      })
+    })
   }
   switchFilter = options => {
     let { id, childId } = options
     if (this.state.preId === id) {
       this.setState({
-        // conditionActive: [id, childId],
         isShow: !this.state.isShow,
         currentActive: id
       })
     } else {
       this.setState({
-        // conditionActive: [id, childId],
         preId: id,
         isShow: true,
         currentActive: id
       })
     }
   }
-  resultFilter = option => {
+  resultFilter = async option => {
     let { id, goodsid, parentid, text } = option
     let resultChildren = _.find(this.state.conditionActive, { id: parentid })
     let filterChildren = _.find(this.state.conditionList, { id: parentid })
     resultChildren.childId = id
     filterChildren.text = text
-
-    let gameid = store.get('goods').gameid
-    console.log(gameid);
-    
-    // let res = await axios.getGoods({
-    //   url: '/d',
-    //   data: {
-    //     gameid,
-    //     parentgoodsid,
-    //     goodsid
-    //   }
-    // })
-
+    let gameid = store.get('goods') ? store.get('goods').gameid : ''
+    let res = await axios.getGoods({
+      url: '/d',
+      data: {
+        gameid,
+        parentgoodsid: parentid,
+        goodsid: <goodsid></goodsid>
+      }
+    })
     this.setState({
-      isShow: false
+      isShow: false,
+      goodList: res.goodsList.filter(item => {
+        item.picurl = item.picurl
+          ? item.picurl[0]
+          : 'https://m.taoshouyou.com/static/home/static/img/goodslist/noimg_bb2fc02.png'
+        return item.id !== '7'
+      })
     })
   }
   render() {

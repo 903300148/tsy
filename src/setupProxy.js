@@ -14,7 +14,13 @@ module.exports = function(app) {
       pathRewrite: {
         '^/d': ''
       }
+    }),
+    proxy('/games', {
+      target: 'https://m.taoshouyou.com/games/list/gameandgoods',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/games': ''
+      }
     })
   ])
 }
-
