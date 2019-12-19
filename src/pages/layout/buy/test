@@ -1,0 +1,242 @@
+    let res = await axios.getGoods({
+      url: '/d',
+      data: {
+        gameid,
+        parentgoodsid: dataParentid,
+        goodsid: dataGoodsid,
+        clientid: 0,
+        areaid: 0,
+        price: 0,
+        quotaid: 0,
+        mobileid: 0,
+        wd: '',
+        sort: 0,
+        account: '',
+        URL_Referer: 'https://m.taoshouyou.com/game/wangzherongyao-2256-20-1',
+        page: 1,
+        amount: 15,
+        isshop: '',
+        isbindcertificate: 2,
+        isbindmobile: 2,
+        isbindemail: 2,
+        isCertificationShop: 2,
+        isActivity: 0,
+        selfsupport: 0,
+        tags: '',
+        attr21: '',
+        attr13: '',
+        attr15: ''
+      }
+    })
+
+
+
+        this.setState({
+      resultActive: [id],
+      goodList: res.goodsList.filter(item => {
+        item.picurl = item.picurl
+          ? item.picurl[0]
+          : 'https://m.taoshouyou.com/static/home/static/img/goodslist/noimg_bb2fc02.png'
+        return item.id !== '7'
+      }),
+      isShow: false
+    })
+
+
+
+
+
+
+
+      {
+        id: '20',
+        text: '账号',
+        icon: 'icon-caret-bottom',
+        children: [
+          {
+            id: '1',
+            text: '账号',
+            goodsid: '1',
+            parentid: '20'
+          },
+          {
+            id: '2',
+            text: '开局号/金币号',
+            goodsid: '24',
+            parentid: '20'
+          },
+          {
+            id: '3',
+            text: '转移号',
+            goodsid: '21',
+            parentid: '20'
+          },
+          {
+            id: '4',
+            text: '人气头像框',
+            goodsid: '23',
+            parentid: '20'
+          },
+          {
+            id: '5',
+            text: '贵族号',
+            goodsid: '22',
+            parentid: '20'
+          }
+        ]
+      },
+      {
+        id: '202',
+        text: '服务器',
+        icon: 'icon-caret-bottom',
+        children: [
+          {
+            id: '2001',
+            text: '全部客户端',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '2002',
+            text: '安卓微信',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '2003',
+            text: '安卓QQ',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '2004',
+            text: '苹果微信',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '2005',
+            text: '苹果QQ',
+            goodsid: 1,
+            parentid: 20
+          }
+        ]
+      },
+      {
+        id: '301',
+        text: '排序',
+        icon: 'icon-caret-bottom',
+        children: [
+          {
+            id: '3001',
+            text: '默认排序',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '3002',
+            text: '价格从高到低',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '3003',
+            text: '价格从低到高',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '3004',
+            text: '发布时间倒序',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '3005',
+            text: '发布时间正序',
+            goodsid: 1,
+            parentid: 20
+          }
+        ]
+      },
+      {
+        id: '401',
+        text: '筛选',
+        icon: 'icon-filter',
+        children: [
+          {
+            id: '4001',
+            text: '默认排序',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '4002',
+            text: '价格从高到低',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '4003',
+            text: '价格从低到高',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '4004',
+            text: '发布时间倒序',
+            goodsid: 1,
+            parentid: 20
+          },
+          {
+            id: '4005',
+            text: '发布时间正序',
+            goodsid: 1,
+            parentid: 20
+          }
+        ]
+      }
+
+
+
+
+ filterTitle: [
+      {
+        key: '1',
+        text: '账号',
+        icon: 'icon-caret-bottom'
+      },
+      {
+        key: '2',
+        text: '服务器',
+        icon: 'icon-caret-bottom'
+      },
+      {
+        key: '3',
+        text: '排序',
+        icon: 'icon-caret-bottom'
+      },
+      {
+        key: '4',
+        text: '筛选',
+        icon: 'icon-filter'
+      }
+    ],
+
+
+
+
+       // key={item.id}
+              // onClick={() =>
+              //   this.resultFilter({
+              //     goodsid: item.goodsid,
+              //     parentid: item.parentid,
+              //     id: item.id,
+              //     text: item.text
+              //   })
+              // }
+
+
+                   className={`p-goodslist-filter-type-p ${
+                this.state.resultActive[0] === item.id ? 'active' : ''
+              }`}

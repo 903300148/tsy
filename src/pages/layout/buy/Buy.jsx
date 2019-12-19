@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavBar } from 'antd-mobile'
-// import BScroll from 'better-scroll'
 import '@/styles/icon.less'
 import './buy.less'
 import axios from '../../../axios/index'
@@ -82,13 +81,6 @@ export class Buy extends Component {
     this.setState({
       contentList: result.list
     })
-
-    // Axios({
-    //   url: '/d',
-    //   method: 'post'
-    // }).then(res => {
-    //   console.log(res)
-    // })
   }
   handelRoute = data => {
     let info = {

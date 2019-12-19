@@ -29,14 +29,22 @@
         text-align: center;
         line-height: 40px;
         color: #333;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-content: center;
         span {
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
           font-size: 14px;
+          display: block;
+          max-width: 70px;
+          -webkit-line-clamp: 1;
         }
         i {
-          font-size: 12px;
+          // font-size: 12px;
+          transform: scale(0.625);
         }
         &.active {
           color: #ff0040;
@@ -45,8 +53,6 @@
     }
     .goods-hidden {
       display: none;
-
-      transform: translate();
     }
     .goods-show {
       display: block;
@@ -122,6 +128,7 @@
               color: #333;
               letter-spacing: 1px;
               font-weight: 600;
+              overflow: hidden;
               text-overflow: ellipsis;
               display: -webkit-box;
               -webkit-line-clamp: 2;

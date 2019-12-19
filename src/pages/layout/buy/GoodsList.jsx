@@ -5,57 +5,57 @@ import store from 'store'
 import axios from '../../../axios/index'
 import './goodList.less'
 import _ from 'lodash'
+import { logicalExpression } from '@babel/types'
 
 class GoodsList extends Component {
   state = {
-    title: store.get('goods') ? store.get('goods').title : '游戏',
+    title: store.get('goods') ? store.get('goods').title : '游戏列表',
     goodList: [],
     isLoading: true,
     isShow: false,
-    conditionActive: ['101'],
-    resultActive: ['1001'],
+    conditionActive: [
+      { id: '20', childId: '1', text: '账号' },
+      { id: '202', childId: '1', text: '服务器' },
+      { id: '301', childId: '1', text: '排序' },
+      { id: '401', childId: '1', text: '筛选' }
+    ],
+    currentActive: '20',
     preId: '',
     conditionList: [
       {
-        id: '101',
+        id: '20',
         text: '账号',
         icon: 'icon-caret-bottom',
         children: [
           {
-            id: '1001',
+            id: '1',
             text: '账号',
-            'data-goodsid': 1,
-            'data-parentid': 20
+            goodsid: '1',
+            parentid: '20'
           },
           {
-            id: '1002',
+            id: '2',
             text: '开局号/金币号',
-            'data-goodsid': 24,
-            'data-parentid': 20
+            goodsid: '24',
+            parentid: '20'
           },
           {
-            id: '1003',
+            id: '3',
             text: '转移号',
-            'data-goodsid': 21,
-            'data-parentid': 20
+            goodsid: '21',
+            parentid: '20'
           },
           {
-            id: '1004',
+            id: '4',
             text: '人气头像框',
-            'data-goodsid': 23,
-            'data-parentid': 20
+            goodsid: '23',
+            parentid: '20'
           },
           {
-            id: '1005',
+            id: '5',
             text: '贵族号',
-            'data-goodsid': 22,
-            'data-parentid': 20
-          },
-          {
-            id: '1006',
-            text: '材料',
-            'data-goodsid': 15,
-            'data-parentid': 14
+            goodsid: '22',
+            parentid: '20'
           }
         ]
       },
@@ -65,24 +65,34 @@ class GoodsList extends Component {
         icon: 'icon-caret-bottom',
         children: [
           {
-            id: '2001',
-            text: '全部客户端'
+            id: '1',
+            text: '全部客户端',
+            goodsid: '1',
+            parentid: '202'
           },
           {
-            id: '2002',
-            text: '安卓微信'
+            id: '2',
+            text: '安卓微信',
+            goodsid: '1',
+            parentid: '202'
           },
           {
-            id: '2003',
-            text: '安卓QQ'
+            id: '3',
+            text: '安卓QQ',
+            goodsid: '1',
+            parentid: '202'
           },
           {
-            id: '2004',
-            text: '苹果微信'
+            id: '4',
+            text: '苹果微信',
+            goodsid: '1',
+            parentid: '202'
           },
           {
-            id: '2005',
-            text: '苹果QQ'
+            id: '5',
+            text: '苹果QQ',
+            goodsid: '1',
+            parentid: '202'
           }
         ]
       },
@@ -92,24 +102,34 @@ class GoodsList extends Component {
         icon: 'icon-caret-bottom',
         children: [
           {
-            id: '3001',
-            text: '默认排序'
+            id: '1',
+            text: '默认排序',
+            goodsid: '1',
+            parentid: '301'
           },
           {
-            id: '3002',
-            text: '价格从高到低'
+            id: '2',
+            text: '价格从高到低',
+            goodsid: '1',
+            parentid: '301'
           },
           {
-            id: '3003',
-            text: '价格从低到高'
+            id: '3',
+            text: '价格从低到高',
+            goodsid: '1',
+            parentid: '301'
           },
           {
-            id: '3004',
-            text: '发布时间倒序'
+            id: '4',
+            text: '发布时间倒序',
+            goodsid: '1',
+            parentid: '301'
           },
           {
-            id: '3005',
-            text: '发布时间正序'
+            id: '5',
+            text: '发布时间正序',
+            goodsid: '1',
+            parentid: '301'
           }
         ]
       },
@@ -119,24 +139,34 @@ class GoodsList extends Component {
         icon: 'icon-filter',
         children: [
           {
-            id: '4001',
-            text: '默认排序'
+            id: '1',
+            text: '默认筛选',
+            goodsid: '1',
+            parentid: '401'
           },
           {
-            id: '4002',
-            text: '价格从高到低'
+            id: '2',
+            text: '价格从高到低',
+            goodsid: '1',
+            parentid: '401'
           },
           {
-            id: '4003',
-            text: '价格从低到高'
+            id: '3',
+            text: '价格从低到高',
+            goodsid: '1',
+            parentid: '401'
           },
           {
-            id: '4004',
-            text: '发布时间倒序'
+            id: '4',
+            text: '发布时间倒序',
+            goodsid: '1',
+            parentid: '401'
           },
           {
-            id: '4005',
-            text: '发布时间正序'
+            id: '5',
+            text: '发布时间正序',
+            goodsid: '1',
+            parentid: '401'
           }
         ]
       }
@@ -146,51 +176,67 @@ class GoodsList extends Component {
   handelBack = () => {
     this.props.history.go(-1)
   }
+  componentWillMount() {}
   async componentDidMount() {
-    let { gameid, parentgoodsid, goodsid } = store.get('goods')
-    let res = await axios.getGoods({
-      url: '/d',
-      data: {
-        gameid,
-        parentgoodsid,
-        goodsid
-      }
-    })
-    this.setState({
-      goodList: res.goodsList.filter(item => {
-        item.picurl = item.picurl
-          ? item.picurl[0]
-          : 'https://m.taoshouyou.com/static/home/static/img/goodslist/noimg_bb2fc02.png'
-        return item.id !== '7'
-      })
-    })
+    // let { gameid, parentgoodsid, goodsid } = store.get('goods')
+    // let res = await axios.getGoods({
+    //   url: '/d',
+    //   data: {
+    //     gameid,
+    //     parentgoodsid,
+    //     goodsid
+    //   }
+    // })
+    // this.setState({
+    //   goodList: res.goodsList.filter(item => {
+    //     item.picurl = item.picurl
+    //       ? item.picurl[0]
+    //       : 'https://m.taoshouyou.com/static/home/static/img/goodslist/noimg_bb2fc02.png'
+    //     return item.id !== '7'
+    //   })
+    // })
   }
-  switchFilter = e => {
-    let id = e.currentTarget.getAttribute('data-id')
-    let childId = _.find(this.state.conditionList, { id }).children[0].id
+  switchFilter = options => {
+    let { id, childId } = options
     if (this.state.preId === id) {
       this.setState({
-        conditionActive: [id],
-        resultActive: [childId],
-        isShow: !this.state.isShow
+        // conditionActive: [id, childId],
+        isShow: !this.state.isShow,
+        currentActive: id
       })
     } else {
       this.setState({
-        conditionActive: [id],
-        resultActive: [childId],
+        // conditionActive: [id, childId],
+        preId: id,
         isShow: true,
-        preId: id
+        currentActive: id
       })
     }
   }
-  resultFilter = e => {
-    let id = e.currentTarget.getAttribute('data-id')
-    console.log(1)
-      this.setState({
-      resultActive: [id]
+  resultFilter = option => {
+    let { id, goodsid, parentid, text } = option
+    let resultChildren = _.find(this.state.conditionActive, { id: parentid })
+    let filterChildren = _.find(this.state.conditionList, { id: parentid })
+    resultChildren.childId = id
+    filterChildren.text = text
+
+    let gameid = store.get('goods').gameid
+    console.log(gameid);
+    
+    // let res = await axios.getGoods({
+    //   url: '/d',
+    //   data: {
+    //     gameid,
+    //     parentgoodsid,
+    //     goodsid
+    //   }
+    // })
+
+    this.setState({
+      isShow: false
     })
   }
-  render () {
+  render() {
     return (
       <div id="goodsList">
         <NavBar
@@ -208,18 +254,21 @@ class GoodsList extends Component {
         <div className="goods-filter">
           <div className="goods-filter-condition">
             {this.state.conditionList.map(item => {
+              let mapCondition = _.find(this.state.conditionActive, {
+                id: item.id
+              })
               return (
                 <div
                   key={item.id}
-                  onClick={this.switchFilter}
-                  data-id={item.id}
-                  className={
-                    this.state.conditionActive[0] === item.id ? 'active' : ''
+                  onClick={() =>
+                    this.switchFilter({
+                      id: item.id,
+                      childId: mapCondition.childId
+                    })
                   }
-                  data-goodsid="1"
-                  data-parentid="20"
+                  className={this.state.id === item.id ? 'active' : ''}
                 >
-                  <span>{item.text}</span>
+                  <span ref={`ref${item.id}`}>{item.text}</span>
                   <i className={'iconfont ' + item.icon}></i>
                 </div>
               )
@@ -227,22 +276,29 @@ class GoodsList extends Component {
           </div>
           <div
             className={`goods-filter-result ${
-              this.state.isShow ? 'goodss-show' : 'goods-hidden'
+              this.state.isShow ? 'goods-show' : 'goods-hidden'
             }`}
           >
             {_.find(this.state.conditionList, {
-              id: this.state.conditionActive[0]
+              id: this.state.currentActive
             }).children.map(item => {
+              let mapResult = _.find(this.state.conditionActive, {
+                id: item.parentid
+              })
               return (
                 <p
                   key={item.id}
-                  onClick={this.resultFilter}
                   className={`p-goodslist-filter-type-p ${
-                    this.state.resultActive[0] === item.id ? 'active' : ''
+                    mapResult.childId === item.id ? 'active' : ''
                   }`}
-                  data-goodsid="24"
-                  data-parentid="20"
-                  data-id={item.id}
+                  onClick={() =>
+                    this.resultFilter({
+                      goodsid: item.goodsid,
+                      parentid: item.parentid,
+                      id: item.id,
+                      text: item.text
+                    })
+                  }
                 >
                   {item.text}
                 </p>
