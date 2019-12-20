@@ -15,6 +15,7 @@ class App extends Component {
   }
   async componentDidMount() {
     let result = await axios.navBar('/api/tabData')
+    
     this.setState({
       navBarData: result.data
     })

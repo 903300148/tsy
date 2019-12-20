@@ -5,8 +5,6 @@ import store from 'store'
 import axios from '../../../axios/index'
 import './goodList.less'
 import _ from 'lodash'
-import { logicalExpression } from '@babel/types'
-import { async } from 'q'
 
 class GoodsList extends Component {
   state = {
@@ -199,6 +197,8 @@ class GoodsList extends Component {
   }
   switchFilter = options => {
     let { id, childId } = options
+    console.log(childId);
+    
     if (this.state.preId === id) {
       this.setState({
         isShow: !this.state.isShow,
@@ -212,6 +212,7 @@ class GoodsList extends Component {
       })
     }
   }
+
   resultFilter = async option => {
     let { id, goodsid, parentid, text } = option
     let resultChildren = _.find(this.state.conditionActive, { id: parentid })
@@ -224,7 +225,7 @@ class GoodsList extends Component {
       data: {
         gameid,
         parentgoodsid: parentid,
-        goodsid: <goodsid></goodsid>
+        goodsid: goodsid
       }
     })
     this.setState({

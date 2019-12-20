@@ -28,6 +28,7 @@ export default {
       axios({
         url,
         headers: {
+          'content-type': 'application/x-www-form-urlencoded',
           referer: 'https://m.taoshouyou.com',
           host: 'https://m.taoshouyou.com'
         }
@@ -42,7 +43,11 @@ export default {
         url: option.url,
         method: 'POST',
         data: qs.stringify(option.data),
-        headers: { 'content-type': 'application/x-www-form-urlencoded' }
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded',
+          referer: 'https://m.taoshouyou.com',
+          host: 'https://m.taoshouyou.com'
+        }
       }).then(res => {
         resolve(res.data)
       })
