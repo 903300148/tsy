@@ -5,8 +5,6 @@ import store from 'store'
 import axios from '../../../axios/index'
 import './goodList.less'
 import _ from 'lodash'
-import { logicalExpression } from '@babel/types'
-import { async } from 'q'
 
 class GoodsList extends Component {
   state = {
@@ -177,26 +175,8 @@ class GoodsList extends Component {
   handelBack = () => {
     this.props.history.go(-1)
   }
-  componentWillMount() {}
-  async componentDidMount() {
-    let { gameid, parentgoodsid, goodsid } = store.get('goods')
-    let res = await axios.getGoods({
-      url: '/d',
-      data: {
-        gameid,
-        parentgoodsid,
-        goodsid
-      }
-    })
-    this.setState({
-      goodList: res.goodsList.filter(item => {
-        item.picurl = item.picurl
-          ? item.picurl[0]
-          : 'https://m.taoshouyou.com/static/home/static/img/goodslist/noimg_bb2fc02.png'
-        return item.id !== '7'
-      })
-    })
-  }
+  async componentWillMount() {}
+  componentDidMount() {}
   switchFilter = options => {
     let { id, childId } = options
     if (this.state.preId === id) {
@@ -220,7 +200,7 @@ class GoodsList extends Component {
     filterChildren.text = text
     let gameid = store.get('goods') ? store.get('goods').gameid : ''
     let res = await axios.getGoods({
-      url: '/d',
+      url: '/tsy/trades/list/indexpager',
       data: {
         gameid,
         parentgoodsid: parentid,

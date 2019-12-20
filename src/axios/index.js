@@ -47,5 +47,15 @@ export default {
         resolve(res.data)
       })
     })
+  },
+  getAcTypeList: option => {
+    return new Promise((resolve, reject) => {
+      axios({
+        url: option.url,
+        params: option.params
+      }).then(res => {
+        resolve(res.data)
+      })
+    })
   }
 }

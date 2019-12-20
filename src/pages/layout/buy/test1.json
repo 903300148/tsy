@@ -1,0 +1,70 @@
+[
+  {
+    "goodsid": "1",
+    "goodsparentid": "20",
+    "goodsname": "账号"
+  },
+  {
+    "goodsid": "3",
+    "goodsparentid": "13",
+    "goodsname": "首充号"
+  },
+  {
+    "goodsid": "5",
+    "goodsparentid": "17",
+    "goodsname": "金币"
+  },
+  {
+    "goodsid": "9",
+    "goodsparentid": "13",
+    "goodsname": "首充号续充"
+  },
+  {
+    "goodsid": "11",
+    "goodsparentid": "10",
+    "goodsname": "苹果代充"
+  },
+
+  {
+    "goodsid": "12",
+    "goodsparentid": "10",
+    "goodsname": "安卓代充"
+  },
+
+  {
+    "goodsid": "15",
+    "goodsparentid": "14",
+    "goodsname": "材料"
+  },
+  {
+    "goodsid": "16",
+    "goodsparentid": "14",
+    "goodsname": "装备"
+  },
+  {
+    "goodsid": "19",
+    "goodsparentid": "17",
+    "goodsname": "元宝"
+  },
+  {
+    "goodsid": "21",
+    "goodsparentid": "20",
+    "goodsname": "转移号"
+  },
+  {
+    "goodsid": "22",
+    "goodsparentid": "20",
+    "goodsname": "贵族号"
+  },
+
+  {
+    "goodsid": "23",
+    "goodsparentid": "20",
+    "goodsname": "人气头像框"
+  },
+  {
+    "goodsid": "24",
+    "goodsparentid": "20",
+    "goodsname": "开局号/金币号"
+  }
+]

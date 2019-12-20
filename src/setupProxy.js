@@ -8,19 +8,20 @@ module.exports = function(app) {
         '^/api': ''
       }
     }),
-    proxy('/d', {
-      target: 'https://m.taoshouyou.com/trades/list/indexpager',
+    proxy('/tsy', {
+      target: 'https://m.taoshouyou.com',
       changeOrigin: true,
       pathRewrite: {
-        '^/d': ''
-      }
-    }),
-    proxy('/games', {
-      target: 'https://m.taoshouyou.com/games/list/gameandgoods',
-      changeOrigin: true,
-      pathRewrite: {
-        '^/games': ''
+        '^/tsy': ''
       }
     })
+    // ,
+    // proxy('/games', {
+    //   target: 'https://m.taoshouyou.com/games/list/gameandgoods',
+    //   changeOrigin: true,
+    //   pathRewrite: {
+    //     '^/games': ''
+    //   }
+    // })
   ])
 }

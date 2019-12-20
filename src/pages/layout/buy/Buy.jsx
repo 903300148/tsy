@@ -8,7 +8,9 @@ import store from 'store'
 export class Buy extends Component {
   state = {
     selectLetter: 'Hot',
+    maskShow: true,
     contentList: [],
+    actyList: [],
     letterList: [
       'Hot',
       'A',
@@ -72,6 +74,33 @@ export class Buy extends Component {
       contentList: result.list
     })
   }
+  handelRoute = async data => {
+    let info = {
+      title: data.title,
+      parentgoodsid: 20,
+      goodsid: 1,
+      gameid: data.gameid,
+      spelling: data.spelling
+    }
+    store.set('goods', info)
+    let params = {
+      gameid: data.gameid
+    }
+    let axiosActyList = await axios.getAcTypeList({
+      url: '/tsy/games/list/gameandgoods',
+      params
+    })
+    console.log(axiosActyList)
+
+    // this.props.history.push({
+    //   pathname: `/games/buy/${info.spelling}-${info.gameid}-${info.parentgoodsid}-${info.goodsid}`,
+    //   params: info
+    // })
+    this.setState({
+      maskShow: true,
+      actyList: axiosActyList
+    })
+  }
   async componentDidMount() {
     let result = await axios.cate(`/api/cate/${this.state.selectLetter}`)
     result.list.map(item => {
@@ -82,19 +111,14 @@ export class Buy extends Component {
       contentList: result.list
     })
   }
-  handelRoute = data => {
-    let info = {
-      title: data.title,
-      parentgoodsid: 20,
-      goodsid: 1,
-      gameid: data.gameid,
-      spelling: data.spelling
-    }
-    store.set('goods', info)
-    this.props.history.push({
-      pathname: `/games/buy/${info.spelling}-${info.gameid}-${info.parentgoodsid}-${info.goodsid}`,
-      params: info
+
+  closeMask = e => {
+    this.setState({
+      maskShow: false
     })
+  }
+  stop = e => {
+    e.stopPropagation()
   }
   render() {
     return (
@@ -193,17 +217,53 @@ export class Buy extends Component {
             </div>
           </div>
         </div>
+        <div
+          className={`mask ${this.state.maskShow ? 'show' : 'hidden'}`}
+          onClick={this.closeMask}
+        >
+          <div className="mask-box" onClick={this.stop}>
+            <div className="games-type">
+              <img
+                className="games-type-icon"
+                src="https://img2.taoshouyou.com/img/2018-12-11/22/63cf05a81476f1382bd5fd4c3dd08101-pc-l.jpg"
+              />
+              <p className="games-type-p">请选择购买类别</p>
+            </div>
+            <ul className="comeshow clearfix">
+              {/* {this.state.actyList.map(item => {
+                return (
+                  
+                )
+              })} */}
+              <li className="show">
+                <a>
+                  <div className="type-pic nav1" style={{}}></div>
+                  <p className="type-name">账号1</p>
+                </a>
+              </li>
+              <li className="show">
+                <a>
+                  <div className="type-pic nav2" style={{}}></div>
+                  <p className="type-name">账号2</p>
+                </a>
+              </li>
+              <li className="hide">
+                <a>
+                  <div className="type-pic nav3" style={{}}></div>
+                  <p className="type-name">账号3</p>
+                </a>
+              </li>
+              <li className="show">
+                <a>
+                  <div className="type-pic nav4" style={{}}></div>
+                  <p className="type-name">账号4</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     )
   }
 }
-
-// new BScroll('.main-index', {
-//   // mouseWheel: true,
-//   preventDefault: false
-// })
-// new BScroll('.main-content', {
-//   // mouseWheel: true,
-//   preventDefault: false
-// })
 export default withRouter(Buy)

@@ -1,0 +1,200 @@
+.cat_comeshow_nav {
+  float: right;
+  width: 38px;
+  padding-top: 13px
+}
+
+.comeshow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .7);
+  display: none;
+  z-index: 1000
+}
+
+.games-type {
+  height: .52rem;
+  line-height: .52rem;
+  border-bottom: 1px solid #EEE;
+  text-align: center;
+  position: relative
+}
+
+.games-type-close {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  width: 12px;
+  height: 12px
+}
+
+.games-type-icon {
+  width: .64rem;
+  height: .64rem;
+  position: absolute;
+  left: .2rem;
+  top: -.2rem;
+  border-radius: .15rem;
+  border: 1px solid #EEE
+}
+
+.games-type-p {
+  font-size: 16px;
+  color: #333
+}
+
+.type-name {
+  font-size: 14px;
+  color: #333
+}
+
+.type-pic {
+  width: .44rem;
+  height: .44rem;
+  margin: 0 auto;
+  background-repeat: no-repeat
+}
+
+.type-pic.nav1 {
+  background: url(/static/home/widget/common/comeshow/nav1_81bbafc.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav2 {
+  background: url(/static/home/widget/common/comeshow/nav2_0faa6ca.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav3 {
+  background: url(/static/home/widget/common/comeshow/nav3_45b6f74.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav4 {
+  background: url(/static/home/widget/common/comeshow/nav4_96fbcd5.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav5 {
+  background: url(/static/home/widget/common/comeshow/nav5_c2675cf.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav6 {
+  background: url(/static/home/widget/common/comeshow/nav6_ccba9d7.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav7 {
+  background: url(/static/home/widget/common/comeshow/nav7_811511b.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav8 {
+  background: url(/static/home/widget/common/comeshow/nav8_126d919.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav9 {
+  background: url(/static/home/widget/common/comeshow/nav9_039e709.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-pic.nav-other {
+  background: url(/static/home/widget/common/comeshow/peiwan_e3a4f87.png?__sprite) no-repeat;
+  background-size: contain
+}
+
+.type-tips {
+  margin-top: 5px;
+  color: #999
+}
+
+.comeshow-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 1);
+  height: 0;
+  width: 100%;
+  z-index: 1002;
+  -webkit-transition: height .1s ease-in-out;
+  transition: height .1s ease-in-out
+}
+
+.comeshow-wrap .btn-hd-menu {
+  display: block;
+  position: absolute;
+  background: url(T18cNSFwVqXXXuPRLc-28-28.png) center center no-repeat;
+  width: 14px;
+  height: 14px;
+  background-size: 100% 100%;
+  right: 14px;
+  top: 16px;
+  -webkit-animation-duration: 0ms;
+  animation-duration: 0ms
+}
+
+.comeshow-wrap.show {
+  min-height: 3.77rem;
+  height: auto
+}
+
+.comeshow-wrap.hide {
+  height: 0
+}
+
+.come_close_l {
+  float: left;
+  width: 1px;
+  height: 20px;
+  margin-left: 9px;
+  background: #de421b;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg)
+}
+
+.come_close_r {
+  float: left;
+  width: 1px;
+  height: 20px;
+  background: #de421b;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg)
+}
+
+.comeshow {}
+
+.comeshow a {
+  color: #000;
+  text-decoration: none;
+  display: block;
+  display: block
+}
+
+.comeshow li {
+  float: left;
+  width: 33%;
+  text-align: center;
+  height: 1.08rem;
+  padding-top: .2rem;
+  box-sizing: border-box
+}
+
+.comeshow .comeshow-blank {
+  width: 100%;
+  text-align: center;
+  display: none;
+  height: 324px;
+  padding-top: 60px
+}
+
+.comeshow li .type-name {
+  display: block;
+  font-size: 14px;
+  text-align: center;
+  margin-top: .03rem
+}
