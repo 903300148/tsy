@@ -5,11 +5,13 @@ import './buy.less'
 import axios from '../../../axios/index'
 import { withRouter } from 'react-router-dom'
 import store from 'store'
+
 export class Buy extends Component {
   state = {
     selectLetter: 'Hot',
-    maskShow: true,
+    maskShow: false,
     contentList: [],
+    maskPic: '',
     actyList: [],
     letterList: [
       'Hot',
@@ -38,7 +40,60 @@ export class Buy extends Component {
       'Y',
       'Z'
     ],
-    searchKeyword: ''
+    searchKeyword: '',
+    goListInfo: {},
+    mapComeshow: [
+      {
+        id: '1',
+        nav: 'nav2',
+        className: 'hide'
+      },
+      {
+        id: '21',
+        nav: 'nav2',
+        className: 'hide'
+      },
+      {
+        id: '3',
+        nav: 'nav3',
+        className: 'hide'
+      },
+      {
+        id: '5',
+        nav: 'nav6',
+        className: 'hide'
+      },
+      {
+        id: '9',
+        nav: 'nav4',
+        className: 'hide'
+      },
+      {
+        id: '11',
+        nav: 'nav9',
+        className: 'hide'
+      },
+      {
+        id: '12',
+        nav: 'nav8',
+        className: 'hide'
+      },
+      {
+        id: '15',
+        nav: 'nav1',
+        className: 'hide'
+      },
+      {
+        id: '16',
+        nav: 'nav5',
+        className: 'hide'
+      },
+      {
+        id: '19',
+        nav: 'nav7',
+        className: 'hide'
+      }
+    ]
   }
   handleInput = e => {
     this.setState({
@@ -75,14 +130,6 @@ export class Buy extends Component {
     })
   }
   handelRoute = async data => {
-    let info = {
-      title: data.title,
-      parentgoodsid: 20,
-      goodsid: 1,
-      gameid: data.gameid,
-      spelling: data.spelling
-    }
-    store.set('goods', info)
     let params = {
       gameid: data.gameid
     }
@@ -90,15 +137,22 @@ export class Buy extends Component {
       url: '/tsy/games/list/gameandgoods',
       params
     })
-    console.log(axiosActyList)
+    axiosActyList.map(item => {
+      item.className = 'hide'
+      return false
+    })
 
-    // this.props.history.push({
-    //   pathname: `/games/buy/${info.spelling}-${info.gameid}-${info.parentgoodsid}-${info.goodsid}`,
-    //   params: info
-    // })
     this.setState({
       maskShow: true,
-      actyList: axiosActyList
+      actyList: axiosActyList,
+      maskPic: data.img,
+      goListNav: axiosActyList,
+      goListInfo: {
+        spelling: data.spelling,
+        gameid: data.gameid,
+        title: data.title,
+        goListNav: axiosActyList
+      }
     })
   }
   async componentDidMount() {
@@ -111,7 +165,23 @@ export class Buy extends Component {
       contentList: result.list
     })
   }
-
+  goGamesList = options => {
+    let { goodsparentid, goodsid } = options
+    let { spelling, gameid, title } = this.state.goListInfo
+    let info = {
+      title,
+      parentgoodsid: goodsparentid,
+      goodsid,
+      gameid,
+      spelling,
+      goListNav: this.state.goListInfo.goListNav
+    }
+    store.set('goods', info)
+    this.props.history.push({
+      pathname: `/games/buy/${spelling}-${gameid}-${goodsparentid}-${options.goodsid}`,
+      params: info
+    })
+  }
   closeMask = e => {
     this.setState({
       maskShow: false
@@ -121,6 +191,18 @@ export class Buy extends Component {
     e.stopPropagation()
   }
   render() {
+    let newArr = []
+    this.state.mapComeshow.map((item, index) => {
+      this.state.actyList.map(e => {
+        if (e.goodsid === item.id) {
+          e.className = 'show'
+          e.nav = item.nav
+          newArr.push(e)
+        }
+        return false
+      })
+      return false
+    })
     return (
       <div id="buy">
         <NavBar
@@ -203,7 +285,8 @@ export class Buy extends Component {
                         this.handelRoute({
                           title: item.name,
                           gameid: item.id,
-                          spelling: item.spelling
+                          spelling: item.spelling,
+                          img: item.pic
                         })
                       }
                     >
@@ -225,40 +308,25 @@ export class Buy extends Component {
             <div className="games-type">
               <img
                 className="games-type-icon"
-                src="https://img2.taoshouyou.com/img/2018-12-11/22/63cf05a81476f1382bd5fd4c3dd08101-pc-l.jpg"
+                src={this.state.maskPic}
+                alt=""
               />
               <p className="games-type-p">请选择购买类别</p>
             </div>
             <ul className="comeshow clearfix">
-              {/* {this.state.actyList.map(item => {
+              {newArr.map(item => {
                 return (
-                  
+                  <li
+                    className={item.className}
+                    id={`goodsid${item.goodsid}`}
+                    key={item.goodsid}
+                    onClick={() => this.goGamesList(item)}
+                  >
+                    <div className={`type-pic ${item.nav}`} style={{}}></div>
+                    <p className="type-name">{item.goodsname}</p>
+                  </li>
                 )
-              })} */}
-              <li className="show">
-                <a>
-                  <div className="type-pic nav1" style={{}}></div>
-                  <p className="type-name">账号1</p>
-                </a>
-              </li>
-              <li className="show">
-                <a>
-                  <div className="type-pic nav2" style={{}}></div>
-                  <p className="type-name">账号2</p>
-                </a>
-              </li>
-              <li className="hide">
-                <a>
-                  <div className="type-pic nav3" style={{}}></div>
-                  <p className="type-name">账号3</p>
-                </a>
-              </li>
-              <li className="show">
-                <a>
-                  <div className="type-pic nav4" style={{}}></div>
-                  <p className="type-name">账号4</p>
-                </a>
-              </li>
+              })}
             </ul>
           </div>
         </div>
@@ -266,4 +334,5 @@ export class Buy extends Component {
     )
   }
 }
+
 export default withRouter(Buy)

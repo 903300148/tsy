@@ -175,8 +175,36 @@ class GoodsList extends Component {
   handelBack = () => {
     this.props.history.go(-1)
   }
-  async componentWillMount() {}
-  componentDidMount() {}
+  // componentWillMount() {}
+  async componentDidMount() {
+    let data = this.props.location.params
+      ? this.props.location.params
+      : store.get('goods')
+      ? store.get('goods')
+      : null
+    if (!data) {
+      console.log('数据请求失败')
+      return false
+    }
+    let { gameid, parentgoodsid, goodsid } = data
+    let res = await axios.getGoods({
+      url: '/tsy/trades/list/indexpager',
+      data: {
+        gameid,
+        parentgoodsid,
+        goodsid
+      }
+    })
+    this.setState({
+      goodList: res.goodsList.filter(item => {
+        item.picurl = item.picurl
+          ? item.picurl[0]
+          : 'https://m.taoshouyou.com/static/home/static/img/goodslist/noimg_bb2fc02.png'
+        return item.id !== '7'
+      })
+    })
+  }
+
   switchFilter = options => {
     let { id, childId } = options
     if (this.state.preId === id) {
@@ -204,7 +232,7 @@ class GoodsList extends Component {
       data: {
         gameid,
         parentgoodsid: parentid,
-        goodsid: <goodsid></goodsid>
+        goodsid
       }
     })
     this.setState({
@@ -292,7 +320,7 @@ class GoodsList extends Component {
             {this.state.goodList.map(item => {
               return (
                 <div className="more-list" key={item.id}>
-                  <a href="">
+                  <a href="/">
                     <div className="list-img">
                       <img src={item.picurl} alt="" />
                     </div>

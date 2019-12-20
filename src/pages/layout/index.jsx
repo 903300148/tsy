@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import Main from './Main'
 import { TabBar } from 'antd-mobile'
-import { withRouter, Route } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import axios from '../../axios/index'
 
 import './index.less'
-import { Buy } from './buy/Buy'
 class App extends Component {
   constructor(props) {
     super(props)
